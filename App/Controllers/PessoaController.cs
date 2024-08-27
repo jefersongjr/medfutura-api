@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("[controller]")]
-public class PeopleController : ControllerBase 
+public class PessoaController : ControllerBase 
 {
     public IActionResult Index() => Ok("Hello World!");
 }
