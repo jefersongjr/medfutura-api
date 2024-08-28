@@ -14,9 +14,9 @@ public class PessoaController : ControllerBase
         _pessoaRepository = pessoaRepository;
     }
 
-    [HttpGet]
-    public IEnumerable<Pessoa> Get()
+    [HttpPost]
+    public IActionResult Add([FromBody]Pessoa pessoa)
     {
-        return _pessoaRepository.GetPessoas();
+        return Created("", _pessoaRepository.AddPessoa(pessoa));
     }
 }
