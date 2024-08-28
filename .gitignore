@@ -1,0 +1,48 @@
+# Diretórios e arquivos específicos do .NET
+bin/
+obj/
+out/
+*.exe
+*.dll
+*.pdb
+*.cache
+*.log
+
+# Arquivos de configuração específicos do Visual Studio
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.suo
+*.csproj.user
+*.suo
+*.cache
+*.config
+
+# Arquivos de build temporários
+*.ncb
+*.suo
+*.user
+*.userosscache
+*.suo
+*.swp
+*.tmp
+
+# Outros arquivos e diretórios que não devem ser versionados
+*.log
+*.pid
+*.seed
+*.tmp
+
+# Diretórios e arquivos específicos do Docker
+.docker/
+docker-compose.override.yml
+
+# Ignorar arquivos de configuração específicos do projeto
+*.dotnet
+*.log
+*.bak
+
+# Arquivos e diretórios de testes
+coverage/
+test-results/
