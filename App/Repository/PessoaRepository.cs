@@ -2,16 +2,11 @@ using App.Models;
 
 namespace App.Repository
 {
-    public class PessoaRepository : IPessoaRepository
+    public class PessoaRepository(PessoaContext pessoaContext) : IPessoaRepository
     {
-       protected readonly PessoaContext _pessoaContext;
+       protected readonly PessoaContext _pessoaContext = pessoaContext;
 
-       public PessoaRepository(PessoaContext pessoaContext)
-       {
-          _pessoaContext = pessoaContext;
-       }
-
-       public Pessoa AddPessoa(Pessoa pessoa)
+        public Pessoa AddPessoa(Pessoa pessoa)
        {
           _pessoaContext.Pessoas.Add(pessoa);
           _pessoaContext.SaveChanges();
