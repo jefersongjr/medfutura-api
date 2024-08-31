@@ -6,17 +6,34 @@ using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("[controller]")]
-public class PessoaController : ControllerBase 
+public class PessoaController : ControllerBase
 {
-    protected readonly IPessoaRepository _pessoaRepository;
+    private readonly IPessoaRepository _pessoaRepository;
+
     public PessoaController(IPessoaRepository pessoaRepository)
     {
         _pessoaRepository = pessoaRepository;
     }
 
-    [HttpGet]
-    public IEnumerable<Pessoa> Get()
+    [HttpPost]
+    public IActionResult Add([FromBody] Pessoa pessoa)
     {
-        return _pessoaRepository.GetPessoas();
+        if (pessoa == null || 
+            pessoa.Nascimento == null || 
+            string.IsNullOrWhiteSpace(pessoa.Nome) ||
+            string.IsNullOrWhiteSpace(pessoa.Apelido))
+        {
+            return StatusCode(422, "Campos obrigatórios ausentes ou inválidos.");
+        }
+
+        try
+        {
+            _pessoaRepository.AddPessoa(pessoa);
+            return CreatedAtAction(nameof(Add), new { id = pessoa.Id }, pessoa);
+        }
+        catch (Exception e)
+        {
+            return BadRequest($"Erro ao processar a requisição: {e.Message}");
+        }
     }
 }
