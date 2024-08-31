@@ -4,9 +4,8 @@ using DotNetEnv;
 
 namespace App.Repository {
 
-    public class PessoaContext : DbContext, IPessoaContext
+    public class PessoaContext(DbContextOptions<PessoaContext> options) : DbContext(options), IPessoaContext
     {
-        public PessoaContext(DbContextOptions<PessoaContext> options) : base(options) {}
         public DbSet<Pessoa> Pessoas { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
