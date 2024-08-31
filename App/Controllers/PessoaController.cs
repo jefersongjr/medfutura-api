@@ -2,7 +2,6 @@ namespace App.Controllers;
 
 using App.Models;
 using App.Repository;
-using App.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
