@@ -10,7 +10,6 @@ public class PessoaController : ControllerBase
 {
     private readonly IPessoaRepository _pessoaRepository;
 
-    // Construtor da classe
     public PessoaController(IPessoaRepository pessoaRepository)
     {
         _pessoaRepository = pessoaRepository;
