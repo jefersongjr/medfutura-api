@@ -1,0 +1,9 @@
+Dotenv.Net - 3.2.0
+DotNetEnv - 3.1.1
+FluentAssertions.AspNetCore.MVC - 4.2.0
+Microsoft.EntityFrameworkCore - 8.0.8
+Microsoft.EntityFrameworkCore.SqlServer - 8.0.8
+Npgsql.EntityFrameworkCore.PostgreSQL - 8.0.2
+Swashbuckle.AspNetCore - 6.5.0
+Docker - 27.1.2
+Docker Compose - v2.5.0
