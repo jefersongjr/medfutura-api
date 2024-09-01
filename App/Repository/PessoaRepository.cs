@@ -2,23 +2,21 @@ using App.Models;
 
 namespace App.Repository
 {
-    public class PessoaRepository(PessoaContext pessoaContext) : IPessoaRepository
-    {
-       protected readonly PessoaContext _pessoaContext = pessoaContext;
+   public class PessoaRepository(PessoaContext pessoaContext) : IPessoaRepository
+   {
+      protected readonly PessoaContext _pessoaContext = pessoaContext;
 
-        public Pessoa AddPessoa(Pessoa pessoa)
-       {
-          _pessoaContext.Pessoas.Add(pessoa);
-          _pessoaContext.SaveChanges();
+      public Pessoa AddPessoa(Pessoa pessoa)
+      {
+         _pessoaContext.Pessoas.Add(pessoa);
+         _pessoaContext.SaveChanges();
 
-          return pessoa;
-       }
+         return pessoa;
+      }
 
-        public IEnumerable<Pessoa> GetPessoas()
-       {
-
-          return _pessoaContext.Pessoas;
-          
-       }
-    }
+      public Pessoa? GetPessoaById(int id)
+      {
+         return _pessoaContext.Pessoas.Find(id);
+      }
+   }
 }
