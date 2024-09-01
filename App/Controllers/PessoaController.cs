@@ -49,4 +49,24 @@ public class PessoaController : ControllerBase
 
         return Ok(pessoa);
     }
+
+
+    [HttpGet]
+    public IActionResult Search([FromQuery] string? t)
+    {
+        if (string.IsNullOrWhiteSpace(t))
+        {
+            return BadRequest("Termo de busca não informado.");
+        }
+
+        var pessoas = _pessoaRepository.SearchPessoas(t);
+
+        if (pessoas == null || !pessoas.Any())
+        {
+            return Ok(new List<Pessoa>());
+        }
+
+        return Ok(pessoas);
+    }
 }
+
