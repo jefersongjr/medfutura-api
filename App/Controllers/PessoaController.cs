@@ -68,5 +68,26 @@ public class PessoaController : ControllerBase
 
         return Ok(pessoas);
     }
+     
+     [HttpPut("{id}")]
+        public IActionResult Update(int id, [FromBody] Pessoa pessoa)
+        {
+            if (pessoa == null ||
+                pessoa.Nascimento == null ||
+                string.IsNullOrWhiteSpace(pessoa.Nome) ||
+                string.IsNullOrWhiteSpace(pessoa.Apelido))
+            {
+                return StatusCode(422, "Campos obrigatórios ausentes ou inválidos.");
+            }
+
+            var updatedPessoa = _pessoaRepository.UpdatePessoa(id, pessoa);
+
+            if (updatedPessoa == null)
+            {
+                return NotFound("Pessoa não encontrada.");
+            }
+
+            return Ok(updatedPessoa);
+        }
 }
 
