@@ -18,5 +18,14 @@ namespace App.Repository
       {
          return _pessoaContext.Pessoas.Find(id);
       }
+
+    public IEnumerable<Pessoa> SearchPessoas(string termo)
+    {
+        return _pessoaContext.Pessoas
+            .Where(p => p.Nome.Contains(termo) ||
+                        p.Apelido.Contains(termo) ||
+                        p.Stack.Any(s => s.Contains(termo)))
+            .ToList();
+    }
    }
 }
