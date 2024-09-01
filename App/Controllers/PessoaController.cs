@@ -102,7 +102,7 @@ public class PessoaController : ControllerBase
             return BadRequest("Não foi possível excluir a pessoa. O ID pode não existir.");
         }
 
-        return NoContent();  // Retorna 204 No Content
+        return NoContent();
     }
 }
 

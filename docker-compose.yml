@@ -14,3 +14,15 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     env_file:
       - .env
+
+  api:
+    build:
+      context: .  # Diretório onde está o Dockerfile e o código fonte da API
+      dockerfile: Dockerfile  # Nome do Dockerfile
+    container_name: my-api-container
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+    ports:
+      - "5231:8080"  # Mapeia a porta 8080 do container para a porta 5231 no host
+    depends_on:
+      - postgres

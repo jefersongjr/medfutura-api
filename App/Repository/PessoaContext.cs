@@ -14,7 +14,7 @@ namespace App.Repository
             {
                 DotNetEnv.Env.Load();
 
-                var host = Environment.GetEnvironmentVariable("POSTGRES_HOST") ?? "localhost";
+                var host = Environment.GetEnvironmentVariable("POSTGRES_HOST") ?? "postgres";
                 var port = Environment.GetEnvironmentVariable("POSTGRES_PORT") ?? "5432";
                 var database = Environment.GetEnvironmentVariable("POSTGRES_DB") ?? "medidb";
                 var username = Environment.GetEnvironmentVariable("POSTGRES_USER") ?? "root";
@@ -24,6 +24,7 @@ namespace App.Repository
                 optionsBuilder.UseNpgsql(connectionString);
             }
         }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
