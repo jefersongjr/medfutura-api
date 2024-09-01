@@ -91,5 +91,18 @@ public class PessoaController : ControllerBase
 
         return Ok(updatedPessoa);
     }
+
+    [HttpDelete("{id}")]
+    public IActionResult Delete(int id)
+    {
+        var isDeleted = _pessoaRepository.DeletePessoa(id);
+
+        if (!isDeleted)
+        {
+            return BadRequest("Não foi possível excluir a pessoa. O ID pode não existir.");
+        }
+
+        return NoContent();  // Retorna 204 No Content
+    }
 }
 

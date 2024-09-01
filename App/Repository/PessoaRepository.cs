@@ -46,5 +46,19 @@ namespace App.Repository
 
          return existingPessoa;
       }
+
+
+      public bool DeletePessoa(int id)
+      {
+         var pessoa = _pessoaContext.Pessoas.Find(id);
+         if (pessoa == null)
+         {
+            return false;
+         }
+
+         _pessoaContext.Pessoas.Remove(pessoa);
+         _pessoaContext.SaveChanges();
+         return true;
+      }
    }
 }
