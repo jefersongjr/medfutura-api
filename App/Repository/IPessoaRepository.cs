@@ -11,5 +11,7 @@ namespace App.Repository
         IEnumerable<Pessoa> SearchPessoas(string termo);
 
         Pessoa? UpdatePessoa(int id, Pessoa pessoa);
+
+        bool DeletePessoa(int id);
     }
 }
