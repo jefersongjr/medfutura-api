@@ -19,13 +19,32 @@ namespace App.Repository
          return _pessoaContext.Pessoas.Find(id);
       }
 
-    public IEnumerable<Pessoa> SearchPessoas(string termo)
-    {
-        return _pessoaContext.Pessoas
-            .Where(p => p.Nome.Contains(termo) ||
-                        p.Apelido.Contains(termo) ||
-                        p.Stack.Any(s => s.Contains(termo)))
-            .ToList();
-    }
+      public IEnumerable<Pessoa> SearchPessoas(string termo)
+      {
+         return _pessoaContext.Pessoas
+             .Where(p => p.Nome.Contains(termo) ||
+                         p.Apelido.Contains(termo) ||
+                         p.Stack.Any(s => s.Contains(termo)))
+             .ToList();
+      }
+
+      public Pessoa? UpdatePessoa(int id, Pessoa pessoa)
+      {
+         var existingPessoa = _pessoaContext.Pessoas.Find(id);
+         if (existingPessoa == null)
+         {
+            return null;
+         }
+
+         existingPessoa.Nome = pessoa.Nome;
+         existingPessoa.Apelido = pessoa.Apelido;
+         existingPessoa.Nascimento = pessoa.Nascimento;
+         existingPessoa.Stack = pessoa.Stack;
+
+         _pessoaContext.Pessoas.Update(existingPessoa);
+         _pessoaContext.SaveChanges();
+
+         return existingPessoa;
+      }
    }
 }

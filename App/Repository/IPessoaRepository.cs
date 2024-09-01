@@ -9,5 +9,7 @@ namespace App.Repository
         Pessoa? GetPessoaById(int id);
         
         IEnumerable<Pessoa> SearchPessoas(string termo);
+
+        Pessoa? UpdatePessoa(int id, Pessoa pessoa);
     }
 }
