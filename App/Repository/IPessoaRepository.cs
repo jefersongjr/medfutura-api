@@ -1,11 +1,11 @@
-using App.Models;
+   using App.Models;
 
-namespace App.Repository
-{
-   public interface IPessoaRepository
+   namespace App.Repository
    {
-    Pessoa AddPessoa(Pessoa pessoa);
+      public interface IPessoaRepository
+      {
+      Pessoa AddPessoa(Pessoa pessoa);
 
-    IEnumerable<Pessoa> GetPessoas();
-   } 
-}
+      Pessoa? GetPessoaById(int id);
+      } 
+   }
