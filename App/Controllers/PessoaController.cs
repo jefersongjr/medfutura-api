@@ -18,8 +18,8 @@ public class PessoaController : ControllerBase
     [HttpPost]
     public IActionResult Add([FromBody] Pessoa pessoa)
     {
-        if (pessoa == null || 
-            pessoa.Nascimento == null || 
+        if (pessoa == null ||
+            pessoa.Nascimento == null ||
             string.IsNullOrWhiteSpace(pessoa.Nome) ||
             string.IsNullOrWhiteSpace(pessoa.Apelido))
         {
@@ -36,4 +36,37 @@ public class PessoaController : ControllerBase
             return BadRequest($"Erro ao processar a requisição: {e.Message}");
         }
     }
+
+    [HttpGet("{id}")]
+    public IActionResult GetById(int id)
+    {
+        var pessoa = _pessoaRepository.GetPessoaById(id);
+
+        if (pessoa == null)
+        {
+            return NotFound("Pessoa não encontrada.");
+        }
+
+        return Ok(pessoa);
+    }
+
+
+    [HttpGet]
+    public IActionResult Search([FromQuery] string? t)
+    {
+        if (string.IsNullOrWhiteSpace(t))
+        {
+            return BadRequest("Termo de busca não informado.");
+        }
+
+        var pessoas = _pessoaRepository.SearchPessoas(t);
+
+        if (pessoas == null || !pessoas.Any())
+        {
+            return Ok(new List<Pessoa>());
+        }
+
+        return Ok(pessoas);
+    }
 }
+
