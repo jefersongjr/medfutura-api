@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("[controller]")]
-public class PessoaController : ControllerBase
+public class PessoaController : ControllerBase // controladores de API
 {
     private readonly IPessoaRepository _pessoaRepository;
 
